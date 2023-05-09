@@ -37,7 +37,7 @@ class PostPolicy
      */
     public function create(User $user): bool
     {
-        //
+        return true;
     }
 
     /**
@@ -70,5 +70,27 @@ class PostPolicy
     public function forceDelete(User $user, Post $post): bool
     {
         //
+    }
+
+    /**
+     * Determine whether the user can view the model.
+     *
+     * @param User|null $user
+     * @param Post $post
+     * @return Response|bool
+     */
+    public function viewAuthor(?User $user, Post $post): Response|bool
+    {
+        return $this->view($user, $post);
+    }
+
+    public function viewTags(?User $user, Post $post): Response|bool
+    {
+        return $this->view($user, $post);
+    }
+
+    public function viewComments(?User $user, Post $post): Response|bool
+    {
+        return $this->view($user, $post);
     }
 }
