@@ -13,12 +13,12 @@ export default defineConfig({
                 'resources/css/app.css',
                 'resources/js/app.js',
             ],
-            // refresh: true,
-            refresh: [
-                'resources/routes/**',
-                'routes/**',
-                'resources/views/**',
-            ],
+            refresh: true,
+            // refresh: [
+            //     'resources/routes/**',
+            //     'routes/**',
+            //     'resources/views/**',
+            // ],
         }),
     ],
 });

@@ -21,6 +21,12 @@ Route::get('/',
     [StaticPageController::class,'home'])->name('home');
 
 Route::resource('users', UserController::class);
+// GET users
+// GET users/{id}
+// POST
+// PUT / PATCH
+// DELETE
+Route::get('/users/delete/{user}',[UserController::class, 'delete'])->name('users.delete');
 
 Route::get('/dashboard', function () {
     return view('dashboard');
