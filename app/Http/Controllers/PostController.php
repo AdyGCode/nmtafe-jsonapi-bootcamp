@@ -119,12 +119,17 @@ class PostController extends Controller
 
         $post->update($input);
 
+        // explode and remove the whitespace from each end of the tags
         $tagList = array_map('trim', explode(",", $input['tags']));
-        $post->tags()->detach(); // Remove tags ready to add new ones
 
+        // Remove previous tags, add new tags
+        $post->tags()->detach();
         foreach ($tagList as $tag) {
             $tags[] = Tag::firstOrCreate(['name' => mb_strtolower($tag)]);
         }
+        // make sure the tag list only has unique tags
+        $tags = array_unique($tags);
+
         $post->tags()->saveMany($tags);
 
         return redirect()->route('posts.show', compact(['post']))

@@ -17,6 +17,12 @@ class Tag extends Model
         'name',
     ];
 
+    // TODO: Add method to force lowercase on create/update
+    public function setNameAttribute(string $input):void
+    {
+        $this->attributes['name']=mb_strtolower($input);
+    }
+
     /**
      * @return BelongsToMany
      */
