@@ -13,8 +13,8 @@
 
 
         <!-- Scripts -->
-        {{-- @vite(['resources/css/app.css', 'resources/js/app.js']) --}}
-        <script src="https://cdn.tailwindcss.com"></script>
+        @vite(['resources/css/app.css', 'resources/js/app.js'])
+{{--        <script src="https://cdn.tailwindcss.com"></script>--}}
 
     </head>
     <body class="font-sans flex flex-col text-gray-900 antialiased">
@@ -22,11 +22,6 @@
 
             @include('layouts.navigation-home')
 
-            <div>
-                <a href="/">
-                    <x-application-logo class="w-20 h-20 fill-current text-gray-500" />
-                </a>
-            </div>
 
             <!-- Page Heading -->
             @if (isset($header))
@@ -37,7 +32,7 @@
                 </header>
             @endif
 
-            <main class="flex-grow h-full w-full  mt-6 px-6 py-4 bg-white dark:bg-gray-800 shadow-md overflow-hidden sm:rounded-lg">
+            <main class="m-8  flex-grow h-full px-6 py-4 bg-white dark:bg-gray-800 shadow-md overflow-hidden sm:rounded-lg">
                 {{ $slot }}
             </main>
 

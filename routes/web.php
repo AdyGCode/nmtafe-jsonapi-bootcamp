@@ -5,6 +5,7 @@ use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 use \App\Http\Controllers\StaticPageController;
+use \App\Http\Controllers\PostController;
 
 /*
 |--------------------------------------------------------------------------
@@ -28,9 +29,13 @@ Route::resource('users', UserController::class);
 // DELETE
 Route::get('/users/delete/{user}',[UserController::class, 'delete'])->name('users.delete');
 
+Route::resource('posts', PostController::class);
+Route::get('/posts/delete/{post}',[PostController::class, 'delete'])->name('posts.delete');
+
+
 Route::get('/dashboard', function () {
     return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+})->middleware(['auth', 'verified'])->name('admin.dashboard');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
