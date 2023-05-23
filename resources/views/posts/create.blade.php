@@ -11,12 +11,26 @@
                 <div class="p-6 bg-white border-b border-gray-200">
 
                     <h3 class="text-xl font-semibold mb-4">Create New Post</h3>
+
+                    @if(Session('success'))
+                        <x-alert message="{{Session('success')}}" alertType="success"/>
+                    @endif
+                    @if(Session('info'))
+                        <x-alert message="{{Session('info')}}" alertType="info"/>
+                    @endif
+                    @if(Session('warning'))
+                        <x-alert message="{{Session('warning')}}" alertType="warning"/>
+                    @endif
+                    @if(Session('fail'))
+                        <x-alert message="{{Session('fail')}}" alertType="fail"/>
+                    @endif
+
                     @if ($errors->any())
-                        <ul class="bg-red-50 text-red-700 p-4 rounded mb-4">
+                        <div class="flex flex-col gap-1 mb-4">
                             @foreach($errors->all() as $error)
-                                <li>{{ $error }}</li>
+                                <x-alert message="{{$error}}" alertType="fail"/>
                             @endforeach
-                        </ul>
+                        </div>
                     @endif
 
                     <form method="POST"

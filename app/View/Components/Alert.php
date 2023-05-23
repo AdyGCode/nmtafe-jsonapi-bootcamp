@@ -9,29 +9,36 @@ use Illuminate\View\Component;
 class Alert extends Component
 {
 
-    public $type;
+    public $alertType;
     public $message;
 
     /**
      * Create a new component instance.
      */
-    public function __construct($type, $message, $style = "gray")
+    public function __construct($alertType, $message)
     {
-        $this->type = $type;
+        $this->alertType = $alertType;
         $this->message = $message;
-        $this->style = $style;
+        $this->colour = "gray";
+        $this->icon = "fa-solid fa-message";
 
-        if ($this->type === 'success') {
-            $this->style = 'green';
-        } else if ($this->type === 'info') {
-            $this->style = 'sky';
-        } else if ($this->type === 'warning') {
-            $this->style = 'amber';
-        } else if ($this->type === 'fail' || $this->type === 'error') {
-            $this->style = 'red';
-        } else {
-            $this->style = "gray";
+        if ($alertType === 'success') {
+            $this->colour = 'green';
+            $this->icon = "fa-solid fa-square-check";
+        } else if ($alertType === 'info') {
+            $this->colour = 'sky';
+            $this->icon = "fa-solid fa-circle-info";
+        } else if ($alertType === 'warning') {
+            $this->colour = 'amber';
+            $this->icon = "fa-solid fa-circle-exclamation";
+        } else if ($alertType === 'fail' || $alertType === 'error') {
+            $this->colour = 'red';
+            $this->icon = "fa-solid fa-triangle-exclamation";
         }
+
+//        $this->bg = "bg-{$this->colour}-100";
+//        $this->text = "text-{$this->colour}-900";
+//        $this->border = "border-{$this->colour}-700";
     }
 
 
@@ -40,6 +47,8 @@ class Alert extends Component
      */
     public function render(): View|Closure|string
     {
-        return view('components.alert')->with('style',$this->style);
+        return view('components.alert')
+            ->with('colour', $this->colour)
+            ->with("icon", $this->icon);
     }
 }

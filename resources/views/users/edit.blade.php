@@ -11,12 +11,17 @@
                 <div class="p-6 bg-white border-b border-gray-200">
 
                     <h3 class="text-xl font-semibold mb-4">Edit User</h3>
-                    @if ($errors->any())
-                        <ul class="bg-red-50 text-red-700 p-4 rounded mb-4">
-                            @foreach($errors->all() as $error)
-                                <li>{{ $error }}</li>
-                            @endforeach
-                        </ul>
+                    @if(Session('success'))
+                        <x-alert message="{{Session('success')}}" type="success"/>
+                    @endif
+                    @if(Session('info'))
+                        <x-alert message="{{Session('info')}}" type="info"/>
+                    @endif
+                    @if(Session('warning'))
+                        <x-alert message="{{Session('warning')}}" type="warning"/>
+                    @endif
+                    @if(Session('fail'))
+                        <x-alert message="{{Session('fail')}}" type="fail"/>
                     @endif
 
                     <form method="POST"
